@@ -1,0 +1,70 @@
+:root {
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-grey-500: hsl(186, 15%, 59%);
+  --clr-grey-900: hsl(187, 24%, 22%);
+  --clr-green-200: hsl(148, 38%, 91%);
+  --clr-green-600: hsl(169, 82%, 27%);
+  --clr-red: hsl(0, 66%, 54%);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--clr-grey-900);
+}
+
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}

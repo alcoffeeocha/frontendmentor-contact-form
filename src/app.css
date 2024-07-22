@@ -1,0 +1,63 @@
+.app {
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  min-height: 100vh;
+  background-color: var(--clr-green-200);
+}
+
+.alert {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  width: max-content;
+  max-width: 460px;
+  padding: 22px 20px;
+  border: none;
+  border-radius: 14px;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.alert--success {
+  background-color: var(--clr-grey-900);
+  color: var(--clr-white);
+}
+
+dialog.alert::backdrop {
+  opacity: 0;
+}
+
+dialog.alert[open] {
+  animation-name: centeredPopupSlide;
+  animation-duration: 400ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes centeredPopupSlide {
+  from {
+    transform: translate3d(-50%, 38px, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+.icon--success {
+  background-image: url("/assets/images/icon-success-check.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon-text>.icon {
+  vertical-align: -0.2em;
+  margin-right: 6px;
+}
