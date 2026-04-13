@@ -178,7 +178,7 @@ function TheForm(): JSX.Element {
 
         setTimeout(() => {
           location.reload();
-        }, 5000);
+        }, 3000);
       });
     }
   };
