@@ -34,14 +34,16 @@ function RadioField({
   const id = makeKebabCase(label);
   return (
     <div class={styles.field + (isInvalid ? ' ' + styles.isInvalid : '')}>
-      <label htmlFor={id}>
+      <span>
         {label} {isRequired ? <span class={styles.required}>*</span> : <></>}
-      </label>
+      </span>
       <div class={styles.radioFieldGroups} data-required={isRequired}>
         {options.map((option) => {
           const isChecked = option.value === currentValue;
           return (
-            <div class={styles.radioField} data-checked={isChecked}>
+            <button type="button" class={styles.radioField} data-checked={isChecked} onClick={()=>{
+              onChange(option.value);
+            }}>
               <input
                 class={styles.radioBoxCtrl}
                 type="radio"
@@ -50,12 +52,14 @@ function RadioField({
                 value={option.value}
                 checked={isChecked}
                 onClick={(e: JSX.TargetedEvent<HTMLInputElement>) => {
+                  e.stopPropagation();
                   onChange(e.currentTarget?.value);
                 }}
+                tabindex={-1}
               />
               <span class={styles.radioBox}></span>
               <label htmlFor={option.value}>{option.text}</label>
-            </div>
+            </button>
           );
         })}
       </div>

@@ -11,7 +11,7 @@
   border-radius: 6px;
   outline: none;
   color: inherit;
-  transition: border .2s ease-in-out;
+  transition: border 0.2s ease-in-out;
 }
 
 .input:active,
@@ -33,11 +33,11 @@
   width: 100%;
 }
 
-.checkField>* {
+.checkField > * {
   flex-shrink: 0;
 }
 
-.checkField>.checkboxText {
+.checkField > .checkboxText {
   flex-shrink: unset;
   overflow-wrap: break-word;
 }
@@ -50,7 +50,7 @@
   cursor: pointer;
 }
 
-.checkboxCtrl:checked+* {
+.checkboxCtrl:checked + * {
   border: none;
   background-color: transparent;
   background-image: url("/assets/images/icon-checkbox-check.svg");
@@ -72,12 +72,12 @@
   gap: 14px;
 }
 
-.radioFieldGroups>* {
+.radioFieldGroups > * {
   grid-column: auto / span 12;
 }
 
 @media (min-width: 768px) {
-  .radioFieldGroups>* {
+  .radioFieldGroups > * {
     grid-column: auto / span 6;
   }
 }
@@ -89,13 +89,21 @@
   column-gap: 12px;
   padding: 10px 24px;
   font-size: 1rem;
+
+  color: var(--clr-grey-900);
+  background-color: transparent;
   border: 1px solid var(--clr-grey-500);
   border-radius: 6px;
+  outline: none;
 }
 
 .radioField[data-checked="true"] {
   border-color: var(--clr-green-600);
   background-color: var(--clr-green-200);
+}
+
+.radioField:focus {
+  border-color: var(--clr-grey-900);
 }
 
 .radioBoxCtrl {
@@ -106,7 +114,7 @@
   cursor: pointer;
 }
 
-.radioBoxCtrl:checked+* {
+.radioBoxCtrl:checked + * {
   border: none;
   background-image: url("/assets/images/icon-radio-selected.svg");
   background-repeat: no-repeat;
