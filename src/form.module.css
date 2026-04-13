@@ -13,17 +13,17 @@
   word-wrap: break-word;
 }
 
-.formFields>* {
+.formFields > * {
   margin-bottom: 22px;
 }
 
-.formFields>.columns {
+.formFields > .columns {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
 
-.columns>* {
+.columns > * {
   flex-grow: 1;
 }
 
@@ -36,4 +36,9 @@
   color: var(--clr-white);
   background-color: var(--clr-green-600);
   cursor: pointer;
+}
+
+.btnPrimary:disabled {
+  opacity: 0.2;
+  cursor: default;
 }

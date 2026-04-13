@@ -100,7 +100,8 @@ function TheForm(): JSX.Element {
       isValid: true,
     },
   });
-  const feedbackDialogRef = createRef();
+  const [isDialogShown, setIsDialogShown] = useState(false);
+  const submitButtonRef = createRef<HTMLButtonElement>();
   const handleRadioChange = useCallback(function (newValue: string) {
     setFields((previousField) => ({
       ...previousField,
@@ -111,13 +112,14 @@ function TheForm(): JSX.Element {
     }));
   }, []);
   const showSuccess = () => {
-    feedbackDialogRef.current?.showModal();
+    setIsDialogShown(() => true);
     setTimeout(() => {
-      feedbackDialogRef.current?.close();
+      setIsDialogShown(() => false);
     }, 10000);
   };
   const handleSubmit = function (e: JSX.TargetedEvent<HTMLFormElement, Event>) {
     e.preventDefault();
+    if (submitButtonRef.current) submitButtonRef.current.disabled = true;
     const firstName = fields.firstName.ref.current?.value;
     const lastName = fields.lastName.ref.current?.value;
     const email = fields.email.ref.current?.value;
@@ -163,9 +165,21 @@ function TheForm(): JSX.Element {
       hasInvalid = true;
     }
     setFields((_) => updatedFields);
-    if (!hasInvalid) {
-      showSuccess();
+    if (hasInvalid) {
+      if (submitButtonRef.current) submitButtonRef.current.disabled = false;
+    } else {
       // TODO: ajax post
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve("200");
+        }, 1000);
+      }).then(() => {
+        showSuccess();
+
+        setTimeout(() => {
+          location.reload();
+        }, 5000);
+      });
     }
   };
   return (
@@ -223,12 +237,12 @@ function TheForm(): JSX.Element {
           isInvalid={!fields.consent.isValid}
           invalidFeedback="To submit this form, please consent to being contacted"
         />
-        <button class={styles.btnPrimary} type="submit">
+        <button class={styles.btnPrimary} type="submit" ref={submitButtonRef}>
           Submit
         </button>
       </main>
       <PopupAlert
-        refObj={feedbackDialogRef}
+        shown={isDialogShown}
         status={AlertStatus.success}
         title="Message Sent!"
         detail="Thanks for completing the form. We'll be in touch soon!"

@@ -6,7 +6,8 @@ export enum AlertStatus {
 }
 
 interface PopupAlertProps {
-  refObj: RefObject<HTMLDialogElement>;
+  refObj?: RefObject<HTMLDialogElement>;
+  shown: boolean;
   status: AlertStatus;
   title: string;
   detail?: string;
@@ -14,12 +15,13 @@ interface PopupAlertProps {
 
 function PopupAlert({
   refObj,
+  shown = false,
   status = AlertStatus.success,
   title = 'Success!',
   detail = '',
 }: PopupAlertProps): JSX.Element {
   return (
-    <dialog class={`alert alert--${status}`} ref={refObj}>
+    <dialog class={`alert alert--${status}`} ref={refObj} open={shown}>
       <span class="icon-text">
         <i class={`icon icon--${status}`}></i>
         <strong>{title}</strong>
